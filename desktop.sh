@@ -276,7 +276,7 @@ curl https://raw.githubusercontent.com/Kicksecure/security-misc/master/etc/defau
 curl https://raw.githubusercontent.com/GrapheneOS/infrastructure/main/chrony.conf -o /mnt/etc/chrony.conf
 
 # Setting GRUB configuration file permissions
-chmod 755 /mnt/etc/grub.d/*
+find /mnt/etc/grub.d/ -type f -exec chmod 755 {} \;
 
 # Adding keyfile to the initramfs to avoid double password.
 dd bs=512 count=4 if=/dev/random of=/mnt/cryptkey/.root.key iflag=fullblock &>/dev/null

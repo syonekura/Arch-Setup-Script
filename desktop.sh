@@ -233,8 +233,9 @@ cat > /mnt/etc/hosts <<EOF
 127.0.1.1   $hostname.localdomain   $hostname
 EOF
 
-# Setting username.
-read -r -p "Please enter name for a user account (leave empty to skip): " username
+# Setting username and password.
+read -r -p "Enter name for a user account: " username
+read -r -p "Enter password" password
 
 # If we have a username, ask for a full name too.
 if [ ! -z "$username" ]; then
@@ -242,12 +243,12 @@ read -r -p "Please enter name the full name of the user account: " fullname
 fi
 
 # Setting up locales.
-read -r -p "Please insert the locale you use in this format (xx_XX): " locale
+read -r -p "Please insert the locale you use in this format (en_US): " locale
 echo "$locale.UTF-8 UTF-8"  > /mnt/etc/locale.gen
 echo "LANG=$locale.UTF-8" > /mnt/etc/locale.conf
 
 # Setting up keyboard layout.
-read -r -p "Please insert the keyboard layout you use: " kblayout
+read -r -p "Please insert the keyboard layout you use (us): " kblayout
 echo "KEYMAP=$kblayout" > /mnt/etc/vconsole.conf
 
 # Configuring /etc/mkinitcpio.conf

@@ -209,7 +209,7 @@ kernel_selector
 # Pacstrap (setting up a base sytem onto the new root).
 echo "Installing the base system (it may take a while)."
 pacstrap /mnt base ${kernel} ${microcode} linux-firmware
-pacstrap /mnt grub grub-btrfs dosfstools efibootmgr mlocate chrony snapper snap-pac
+pacstrap /mnt grub grub-btrfs dosfstools efibootmgr mlocate chrony snapper snap-pac inotify-tools
 pacstrap /mnt apparmor bash-completion htop iwd man-db man-pages mc nano nftables reflector sudo tmux usbguard wget vim
 pacstrap /mnt gnome gnome-extra networkmanager networkmanager-openvpn networkmanager-strongswan networkmanager-pptp networkmanager-l2tp pipewire-pulse pipewire-jack gdm celluloid firewalld rhythmbox transmission-gtk papirus-icon-theme
 
@@ -454,7 +454,7 @@ systemctl enable chronyd --root=/mnt &>/dev/null
 echo "Enabling Snapper and automatic snapshots entries."
 systemctl enable snapper-timeline.timer --root=/mnt &>/dev/null
 systemctl enable snapper-cleanup.timer --root=/mnt &>/dev/null
-systemctl enable grub-btrfs.path --root=/mnt &>/dev/null
+systemctl enable grub-btrfsd.service --root=/mnt &>/dev/null
 
 # Setting umask to 077.
 sed -i 's/022/077/g' /mnt/etc/profile

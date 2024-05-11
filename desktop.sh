@@ -210,7 +210,7 @@ kernel_selector
 echo "Installing the base system (it may take a while)."
 pacstrap /mnt base ${kernel} ${microcode} linux-firmware
 pacstrap /mnt grub grub-btrfs dosfstools efibootmgr mlocate chrony snapper snap-pac
-pacstrap /mnt apparmor bash-completion htop iwd man-db man-pages mc nano nftables reflector sudo tmux usbguard wget vim zram-generator
+pacstrap /mnt apparmor bash-completion htop iwd man-db man-pages mc nano nftables reflector sudo tmux usbguard wget vim
 pacstrap /mnt gnome gnome-extra networkmanager networkmanager-openvpn networkmanager-strongswan networkmanager-pptp networkmanager-l2tp pipewire-pulse piprewire-jack gdm celluloid firewalld rhythmbox transmission-gtk papirus-icon-theme
 
 # Routing jack2 through PipeWire.
@@ -317,13 +317,6 @@ auth		required	pam_wheel.so use_uid
 auth		required	pam_unix.so
 account		required	pam_unix.so
 session		required	pam_unix.so
-EOF
-
-# ZRAM configuration
-bash -c 'cat > /mnt/etc/systemd/zram-generator.conf' <<-'EOF'
-[zram0]
-zram-fraction = 1
-max-zram-size = 8192
 EOF
 
 # Randomize Mac Address.
